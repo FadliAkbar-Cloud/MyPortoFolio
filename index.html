@@ -1,294 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="id">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fadli Akbar | Portofolio</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pengenalan Batik Indonesia</title>
+  <meta name="description"
+    content="Website sederhana untuk memperkenalkan batik: sejarah, motif, proses pembuatan, dan galeri." />
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent: #8b3e2f;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, Arial;
+      color: #222;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 220px;
+      background: #f4ede9;
+      border-right: 1px solid #ddd;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      overflow-y: auto;
+      padding-top: 1rem;
+    }
+
+    .sidebar .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: var(--accent);
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .main {
+      margin-left: 220px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      color: var(--accent);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 991px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 
-<body id="home">
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light shadow-sm fixed-top" style="background-color: #1e79a2">
-    <div class="container">
-      <a class="navbar-brand" href="#">Fadli Akbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<body>
+  <!-- Sidebar (desktop) -->
+  <aside class="sidebar d-none d-lg-flex flex-column justify-content-between">
+    <div>
+      <div class="d-flex align-items-center px-3 mb-3">
+        <div class="logo">B</div>
+        <div class="ms-2">
+          <div class="fw-bold">Batik</div>
+          <div class="text-muted small">Warisan Budaya</div>
+        </div>
+      </div>
+      <nav class="nav flex-column px-3">
+        <a class="nav-link text-muted" href="#sejarah">Sejarah</a>
+        <a class="nav-link text-muted" href="#motif">Motif</a>
+        <a class="nav-link text-muted" href="#proses">Proses</a>
+        <a class="nav-link text-muted" href="#galeri">Galeri</a>
+        <a class="nav-link text-muted" href="#kontak">Kontak</a>
+      </nav>
+    </div>
+    <div class="p-3 text-muted small">© Pengenalan Batik</div>
+  </aside>
+
+  <!-- Navbar (mobile) -->
+  <nav class="navbar navbar-expand-lg bg-light d-lg-none border-bottom">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold text-danger" href="#">Batik</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMobile">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navMobile">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="https://fadliakbar-cloud.github.io/MyPortoFolio/dasbor.html">Batik Ind</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#contact">Contacts</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="#sejarah">Sejarah</a></li>
+          <li class="nav-item"><a class="nav-link" href="#motif">Motif</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proses">Proses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Akhir Navbar -->
 
-  <!-- Jumbotron -->
-  <section class="jumbotron text-center">
-    <img src="foto/after.jpg" alt="" width="200" class="rounded-circle img-thumbnail" />
-    <h1 class="display-4">Fadli Akbar</h1>
-    <p class="lead">Siswa | SMKN 5 MALANG</p>
-    <a href="https://github.com/FadliAkbar-Cloud" target="_blank" class="btn btn-dark mt-3">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-github me-2"
-        viewBox="0 0 16 16">
-        <path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38
-      0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52
-      -.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07
-      -1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
-      0 0 .67-.21 2.2.82a7.68 7.68 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04
-      2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15
-      0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48
-      0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8
-      c0-4.42-3.58-8-8-8z" />
-      </svg>
-      Follow My GitHub
-    </a>
-    <a href="https://fadliakbar-cloud.github.io/MyPortoFolio/portofolio.html" target="_blank"
-      class="btn btn-outline-primary mt-3 ms-2">
-      Other Portofolio
-    </a>
+  <!-- Main -->
+  <div class="main">
+    <header class="p-3 border-bottom">
+      <h1>Pengenalan Batik Indonesia</h1>
+    </header>
 
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#fff" fill-opacity="1"
-        d="M0,320L26.7,288C53.3,256,107,192,160,170.7C213.3,149,267,171,320,192C373.3,213,427,235,480,234.7C533.3,235,587,213,640,202.7C693.3,192,747,192,800,181.3C853.3,171,907,149,960,117.3C1013.3,85,1067,43,1120,69.3C1173.3,96,1227,192,1280,234.7C1333.3,277,1387,267,1413,261.3L1440,256L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
-      </path>
-    </svg>
-  </section>
-  <!-- Akhir jumbotron -->
-
-  <!-- About -->
-  <section id="about">
-    <div class="container">
-      <div class="row text-center mb-3">
-        <div class="col">
-          <h2>About Me</h2>
+    <main class="container py-4">
+      <!-- Hero -->
+      <section class="row align-items-center mb-5">
+        <div class="col-lg-7">
+          <span class="badge bg-danger">Budaya & Tradisi</span>
+          <h2 class="mt-3 text-danger">Kenali Batik — Warisan, Makna, & Keindahan</h2>
+          <p class="text-muted">Website ini menjelaskan sejarah batik Indonesia, jenis motif populer, proses pembuatan,
+            serta galeri inspirasi.</p>
+          <a class="btn btn-danger" href="#galeri">Lihat Galeri</a>
         </div>
-      </div>
-      <div class="row justify-content-center fs-5 text-center">
-        <div class="col-md-4">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, obcaecati porro similique aliquid nobis
-            omnis a debitis, libero perspiciatis commodi maiores laudantium. Ipsum, blanditiis pariatur!</p>
+        <div class="col-lg-5">
+          <div class="card p-3">
+            <h5 class="mb-3">Motif Populer</h5>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge text-bg-light">Parang</span>
+              <span class="badge text-bg-light">Mega Mendung</span>
+              <span class="badge text-bg-light">Truntum</span>
+              <span class="badge text-bg-light">Kawung</span>
+              <span class="badge text-bg-light">Sido Mukti</span>
+              <span class="badge text-bg-light">Lasem</span>
+            </div>
+          </div>
         </div>
-        <div class="col-md-4">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus beatae incidunt quis exercitationem sequi.
-            Sequi, autem. Molestias totam officiis cum ut aliquam similique, perspiciatis eum?</p>
+      </section>
+
+      <!-- Sejarah -->
+      <section id="sejarah" class="mb-5">
+        <h2 class="text-danger">Sejarah Singkat Batik</h2>
+        <p>Batik merupakan warisan budaya bangsa Indonesia yang telah diakui UNESCO sebagai Warisan Kemanusiaan untuk
+          Budaya Lisan dan Nonbendawi sejak 2 Oktober 2009.</p>
+      </section>
+
+      <!-- Motif -->
+      <section id="motif" class="mb-5">
+        <h2 class="text-danger">Jenis & Makna Motif</h2>
+        <p>Motif batik memiliki makna yang dalam, seperti motif Parang melambangkan kekuatan, Mega Mendung melambangkan
+          kesabaran, dan Truntum melambangkan cinta yang tumbuh kembali.</p>
+      </section>
+
+      <!-- Proses -->
+      <section id="proses" class="mb-5">
+        <h2 class="text-danger">Proses Pembuatan Batik</h2>
+        <p>Pembuatan batik melalui beberapa tahapan, mulai dari mencanting, pewarnaan, hingga pelorodan. Setiap tahapan
+          memerlukan ketelitian dan keterampilan tinggi.</p>
+      </section>
+
+      <!-- Galeri -->
+      <section id="galeri" class="mb-5">
+        <h2 class="text-danger">Galeri Batik</h2>
+        <div class="row gallery g-2">
+          <div class="col-6 col-md-3"><img src="https://picsum.photos/id/1015/400/300" alt="batik1"></div>
+          <div class="col-6 col-md-3"><img src="https://picsum.photos/id/1025/400/300" alt="batik2"></div>
+          <div class="col-6 col-md-3"><img src="https://picsum.photos/id/1035/400/300" alt="batik3"></div>
+          <div class="col-6 col-md-3"><img src="https://picsum.photos/id/1045/400/300" alt="batik4"></div>
         </div>
+      </section>
+
+      <!-- Kontak -->
+      <section id="kontak" class="mb-5">
+        <h2 class="text-danger">Kontak</h2>
+        <p>Email: info@batikindonesia.com</p>
+      </section>
+    </main>
+
+    <footer class="text-center py-3 border-top">© Pengenalan Batik — Edukasi Budaya Indonesia</footer>
+  </div>
+
+  <!-- Modal -->
+  <div id="modal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-transparent border-0">
+        <span id="prevBtn" class="position-absolute top-50 start-0 translate-middle-y fs-1 text-white px-2"
+          style="cursor:pointer;">&#10094;</span>
+        <img id="modalImg" class="img-fluid rounded" src="" alt="preview">
+        <span id="nextBtn" class="position-absolute top-50 end-0 translate-middle-y fs-1 text-white px-2"
+          style="cursor:pointer;">&#10095;</span>
       </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#e2edff" fill-opacity="1"
-        d="M0,160L30,176C60,192,120,224,180,234.7C240,245,300,235,360,208C420,181,480,139,540,154.7C600,171,660,245,720,272C780,299,840,277,900,272C960,267,1020,277,1080,272C1140,267,1200,245,1260,229.3C1320,213,1380,203,1410,197.3L1440,192L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z">
-      </path>
-    </svg>
-  </section>
-  <!-- Akhir About -->
+  </div>
 
-  <!-- Projects -->
-  <section id="projects">
-    <div class="container">
-      <div class="row text-center">
-        <div class="col my-5">
-          <h2>My Projects</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 my-3">
-          <div class="card">
-            <img src="foto/proj1.jpg" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <p class="card-text">Saya Membuat CRUD dengan PHP</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 my-3">
-          <div class="card">
-            <img src="foto/proj2.png" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <p class="card-text">Saya Membuat CRUD dengan PHP menggunakan Object Oriented Programing</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 my-3">
-          <div class="card">
-            <img src="foto/proj3.png" class="card-img-top" alt="..." />
-            <div class="card-body">
-              <p class="card-text">Saya Membuat Aplikasi Login Sederhana Di Kodular</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#ffffff" fill-opacity="1"
-        d="M0,160L48,144C96,128,192,96,288,101.3C384,107,480,149,576,176C672,203,768,213,864,202.7C960,192,1056,160,1152,154.7C1248,149,1344,171,1392,181.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-      </path>
-    </svg>
-  </section>
-  <!-- Akhir Projects -->
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Pendidikan -->
-  <section id="pendidikan">
-    <div class="container my-5">
-      <div class="row text-center mb-5">
-        <div class="col">
-          <h1 class="fw-bolder" style="font-family: serif" style="background-color: #fcedc2">Pendidikan</h1>
-        </div>
-      </div>
-
-      <div class="row align-items-start mt-5">
-        <!-- Kolom Kiri -->
-        <div class="col-md-6">
-          <!-- Progress Bar dan Angka -->
-          <div class="position-relative my-4">
-            <div class="progress position-absolute top-50 start-0 translate-middle-y w-100" style="height: 2px;">
-              <div class="progress-bar" style="width: 85%;"></div>
-            </div>
-
-            <!-- Angka Tombol -->
-            <div class="row text-center">
-              <div class="col-4 position-relative">
-                <button class="btn btn-sm btn-primary rounded-pill position-absolute top-0 start-50 translate-middle"
-                  style="width: 2rem; height: 2rem;">1</button>
-              </div>
-              <div class="col-4 position-relative">
-                <button class="btn btn-sm btn-primary rounded-pill position-absolute top-0 start-50 translate-middle"
-                  style="width: 2rem; height: 2rem;">2</button>
-              </div>
-              <div class="col-4 position-relative">
-                <button class="btn btn-sm btn-secondary rounded-pill position-absolute top-0 start-50 translate-middle"
-                  style="width: 2rem; height: 2rem;">3</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Logo Sekolah -->
-          <div class="row text-center">
-            <div class="col-4">
-              <img src="foto/sd-removebg-preview.png" class="img-thumbnail mb-2 rounded-pill" width="100" alt="SD">
-              <p>SDN Blimbing 5 Malang</p>
-            </div>
-            <div class="col-4">
-              <img src="foto/smp.jpg" class="img-thumbnail mb-2 rounded-pill" width="100" alt="SMP">
-              <p>SMP Annur</p>
-            </div>
-            <div class="col-4">
-              <img src="foto/smk-removebg-preview.png" class="img-thumbnail mb-2 rounded-pill" width="100" alt="SMK">
-              <p>SMKN 5 Malang</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Kolom Kanan -->
-        <div class="col-md-6 text-center">
-          <img src="foto/after.jpg" class="img-thumbnail" style="border-radius: 50%; position: relative; top: -50px;"
-            width="250" alt="Profile Git Ku">
-        </div>
-      </div>
-
-
-
-
-    </div>
-  </section>
-
-  <!-- AKhir Pendidikan -->
-
-  <!-- Conctact -->
-  <section id="contact">
-    <div class="container">
-      <div class="row text-center mb-3">
-        <div class="col">
-          <h2>Contact Me</h2>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-md-8">
-          <div class="alert alert-success alert-dismissible fade show my-alert d-none" role="alert">
-            <strong>Terimakasih!</strong> Pesan anda sudah terkirim.
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-          <form name="Contact-From-My-Porto-Folio">
-            <div class="mb-3">
-              <label for="name" class="form-label">Nama Lengkap</label>
-              <input type="text" name="nama" class="form-control" id="name" aria-describedby="name" required />
-            </div>
-            <div class="mb-3">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" name="email" class="form-control" id="email" aria-describedby="email" required />
-            </div>
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Pesan</label>
-              <textarea class="form-control" name="pesan" id="exampleFormControlTextarea1" rows="3" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
-            <button class="btn btn-primary d-none btn-loading" type="button" disabled>
-              <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-              <span role="status">Loading...</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path fill="#1e79a2" fill-opacity="1"
-        d="M0,256L48,229.3C96,203,192,149,288,160C384,171,480,245,576,272C672,299,768,277,864,272C960,267,1056,277,1152,277.3C1248,277,1344,267,1392,261.3L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
-      </path>
-    </svg>
-  </section>
-
-  <!-- Akhir Contact -->
-
-  <!-- Footer -->
-  <footer class="text-white text-center pb-5">
-    <p>Di Buat Oleh </i> <a href="https://www.instagram.com/fdlakbr5/" class="text-white fw-bold">@fdlakbr5</a></p>
-  </footer>
-  <!-- Akhir Footer -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec";
-    const form = document.forms["Contact-From-My-Porto-Folio"];
-    const btnKirim = document.querySelector(".btn-kirim");
-    const btnLoading = document.querySelector(".btn-loading");
-    const myAlert = document.querySelector(".my-alert");
+    (() => {
+      const modal = new bootstrap.Modal(document.getElementById('modal'));
+      const modalImg = document.getElementById('modalImg');
+      const nextBtn = document.getElementById('nextBtn');
+      const prevBtn = document.getElementById('prevBtn');
+      const galleryImgs = Array.from(document.querySelectorAll('.gallery img'));
+      let currentIndex = -1;
 
+      function openModal(i) {
+        currentIndex = i;
+        modalImg.src = galleryImgs[i].src;
+        modal.show();
+      }
 
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      // loading
-      btnLoading.classList.toggle('d-none');
-      btnKirim.classList.toggle('d-none');
+      function showNext(d) {
+        if (currentIndex === -1) return;
+        let next = (currentIndex + d + galleryImgs.length) % galleryImgs.length;
+        openModal(next);
+      }
 
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          // reload
-          btnLoading.classList.toggle('d-none');
-          btnKirim.classList.toggle('d-none');
-          myAlert.classList.toggle('d-none');
-          form.reset();
+      galleryImgs.forEach((img, i) => {
+        img.addEventListener('click', () => openModal(i));
+      });
 
-          console.log("Success!", response);
-        })
-        .catch((error) => console.error("Error!", error.message));
-    });
+      nextBtn.addEventListener('click', () => showNext(1));
+      prevBtn.addEventListener('click', () => showNext(-1));
+
+      document.addEventListener('keydown', (e) => {
+        if (!document.getElementById('modal').classList.contains('show')) return;
+        if (e.key === 'ArrowRight') showNext(1);
+        if (e.key === 'ArrowLeft') showNext(-1);
+        if (e.key === 'Escape') modal.hide();
+      });
+    })();
   </script>
 </body>
 
