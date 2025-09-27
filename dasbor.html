@@ -1,221 +1,261 @@
 <!doctype html>
 <html lang="id">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Pengenalan Batik Indonesia</title>
-  <meta name="description" content="Website sederhana untuk memperkenalkan batik: sejarah, motif, proses pembuatan, dan galeri." />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    :root{--accent:#8b3e2f;--muted:#6b6b6b;--bg:#fff;--card:#f9f6f3}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:Inter, 'Segoe UI', Roboto, Arial;line-height:1.5;color:#222;background:var(--bg);display:flex;min-height:100vh}
+    body {
+      font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
 
-    /* sidebar */
-    .sidebar{width:220px;background:#f4ede9;border-right:1px solid #ddd;display:flex;flex-direction:column;justify-content:space-between;position:fixed;top:0;bottom:0;left:0;overflow-y:auto}
-    .sidebar .brand{padding:20px;display:flex;align-items:center;gap:10px}
-    .sidebar .logo{width:40px;height:40px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:#fff;font-weight:700}
-    .sidebar nav{display:flex;flex-direction:column;padding:0 20px 20px}
-    .sidebar nav a{padding:10px 0;text-decoration:none;color:var(--muted)}
-    .sidebar nav a:hover{color:var(--accent);font-weight:600}
+    .sidebar {
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 240px;
+      background-color: #f8f9fa;
+      border-right: 1px solid #ddd;
+      padding-top: 1rem;
+    }
 
-    /* main */
-    .main{margin-left:220px;flex:1;display:flex;flex-direction:column}
-    header{background:linear-gradient(90deg,#f7efe9, #fff);border-bottom:1px solid #eee;padding:16px 28px}
-    header h1{margin:0;font-size:20px;color:var(--accent)}
+    .sidebar .nav-link {
+      color: #555;
+    }
 
-    main{flex:1;padding:28px;}
+    .sidebar .nav-link.active {
+      font-weight: 600;
+      color: #b02a37;
+    }
 
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:28px 0}
-    .hero h2{font-size:30px;margin:0 0 10px;color:var(--accent)}
-    .lead{color:var(--muted);margin-bottom:18px}
-    .cta{display:inline-block;background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none}
+    .content {
+      margin-left: 240px;
+    }
 
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(35,30,25,0.04)}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#fff;color:var(--accent);font-weight:600}
+    @media (max-width: 991px) {
+      .sidebar {
+        position: relative;
+        height: auto;
+        width: 100%;
+      }
 
-    section{padding:40px 0;border-top:1px solid #f1ece8}
-    .grid{display:grid;gap:20px}
-    .three{grid-template-columns:repeat(3,1fr)}
-    .two{grid-template-columns:repeat(2,1fr)}
+      .content {
+        margin-left: 0;
+      }
+    }
 
-    /* gallery */
-    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-    .gallery img{width:100%;height:170px;object-fit:cover;border-radius:8px;cursor:pointer}
+    .hero {
+      background: linear-gradient(90deg, #f7efe9, #fff);
+      padding: 60px 0;
+    }
 
-    footer{background:#fff;padding:16px 28px;color:var(--muted);border-top:1px solid #eee;text-align:center}
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: .5rem;
+      cursor: pointer;
+    }
 
-    /* modal */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.45)}
-    .modal-content{max-width:900px;width:95%;background:#fff;padding:18px;border-radius:10px}
-    .close{float:right;cursor:pointer;font-weight:700}
-
-    @media(max-width:980px){
-      .hero{grid-template-columns:1fr;}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-      .three,.two{grid-template-columns:1fr}
-      .sidebar{position:relative;width:100%;flex-direction:row;align-items:center;height:auto;border-right:none;border-bottom:1px solid #ddd;overflow:visible}
-      .sidebar nav{flex-direction:row;padding:0 10px;overflow-x:auto}
-      .sidebar nav a{padding:10px}
-      .main{margin-left:0}
+    footer {
+      padding: 20px;
+      text-align: center;
+      background: #f8f9fa;
+      margin-top: 40px;
     }
   </style>
 </head>
+
 <body>
-  <aside class="sidebar">
-    <div>
-      <div class="brand">
-        <div class="logo">B</div>
-        <div>
-          <div style="font-weight:700">Batik</div>
-          <div class="muted" style="font-size:12px">Warisan Budaya</div>
+  <!-- Sidebar -->
+  <div class="sidebar d-lg-block d-none">
+    <div class="px-3 mb-4">
+      <h4 class="text-danger">Batik</h4>
+      <small class="text-muted">Warisan Budaya</small>
+    </div>
+    <nav class="nav flex-column px-3">
+      <a class="nav-link active" href="#hero">Beranda</a>
+      <a class="nav-link" href="#sejarah">Sejarah</a>
+      <a class="nav-link" href="#motif">Motif</a>
+      <a class="nav-link" href="#proses">Proses</a>
+      <a class="nav-link" href="#galeri">Galeri</a>
+      <a class="nav-link" href="#kontak">Kontak</a>
+    </nav>
+  </div>
+
+  <!-- Navbar untuk mobile -->
+  <nav class="navbar navbar-expand-lg bg-light border-bottom d-lg-none">
+    <div class="container-fluid">
+      <a class="navbar-brand text-danger fw-bold" href="#">Batik</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMobile">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMobile" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#hero">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sejarah">Sejarah</a></li>
+          <li class="nav-item"><a class="nav-link" href="#motif">Motif</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proses">Proses</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+          <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- Hero -->
+    <section id="hero" class="hero">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <h1 class="text-danger">Kenali Batik — Warisan, Makna, & Keindahan</h1>
+            <p class="lead text-muted">Website ini menjelaskan sejarah batik Indonesia, jenis motif populer, proses
+              pembuatan, serta galeri inspirasi.</p>
+            <a href="#galeri" class="btn btn-danger">Lihat Galeri</a>
+          </div>
+          <div class="col-lg-5">
+            <div class="card shadow-sm p-3">
+              <h5>Motif Populer</h5>
+              <div class="d-flex flex-wrap gap-2 mt-2">
+                <span class="badge bg-danger">Parang</span>
+                <span class="badge bg-danger">Mega Mendung</span>
+                <span class="badge bg-danger">Truntum</span>
+                <span class="badge bg-danger">Kawung</span>
+                <span class="badge bg-danger">Sido Mukti</span>
+                <span class="badge bg-danger">Lasem</span>
+                <span class="badge bg-danger">Sekar Jagad</span>
+                <span class="badge bg-danger">Cendrawasih</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <nav>
-        <a href="#sejarah">Sejarah</a>
-        <a href="#motif">Motif</a>
-        <a href="#proses">Proses</a>
-        <a href="#galeri">Galeri</a>
-        <a href="#kontak">Kontak</a>
-      </nav>
-    </div>
-    <div style="padding:10px;font-size:12px;color:var(--muted)">© Pengenalan Batik</div>
-  </aside>
+    </section>
 
-  <div class="main">
-    <header>
-      <h1>Pengenalan Batik Indonesia</h1>
-    </header>
-
-    <main>
-      <section class="hero">
-        <div>
-          <span class="badge">Budaya & Tradisi</span>
-          <h2>Kenali Batik — Warisan, Makna, & Keindahan</h2>
-          <p class="lead">Website ini menjelaskan sejarah batik Indonesia, jenis motif populer, proses pembuatan, serta galeri inspirasi. Cocok untuk pembelajaran atau profil budaya.</p>
-          <a class="cta" href="#galeri">Lihat Galeri</a>
-        </div>
-        <aside class="card">
-          <h3 style="margin-top:0">Motif Populer</h3>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <div class="pill">Parang</div>
-            <div class="pill">Mega Mendung</div>
-            <div class="pill">Truntum</div>
-            <div class="pill">Kawung</div>
-            <div class="pill">Sido Mukti</div>
-            <div class="pill">Lasem</div>
-            <div class="pill">Sekar Jagad</div>
-            <div class="pill">Cendrawasih</div>
+    <!-- Sejarah -->
+    <section id="sejarah" class="py-5">
+      <div class="container">
+        <h2 class="mb-4">Sejarah Singkat Batik</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <h5>Asal Usul</h5>
+              <p>Batik berkembang lama di kepulauan Nusantara, dipengaruhi budaya lokal dan pedagang asing.</p>
+            </div>
           </div>
-        </aside>
-      </section>
-
-      <section id="sejarah">
-        <h2>Sejarah Singkat Batik</h2>
-        <div class="grid three" style="margin-top:12px">
-          <div class="card">
-            <h3 style="margin-top:0">Asal Usul</h3>
-            <p class="muted">Batik berkembang lama di kepulauan Nusantara, dipengaruhi budaya lokal dan interaksi pedagang asing. Teknik canting berkembang pesat di Jawa.</p>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <h5>Penggunaan</h5>
+              <p>Dulu batik menjadi penanda status sosial dan upacara adat, kini juga menjadi mode sehari-hari.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3 style="margin-top:0">Penggunaan</h3>
-            <p class="muted">Dulu batik sering menjadi penanda status sosial, upacara adat, dan simbol. Kini batik menjadi pakaian harian dan mode modern.</p>
-          </div>
-          <div class="card">
-            <h3 style="margin-top:0">Pengakuan Dunia</h3>
-            <p class="muted">Pada 2 Oktober 2009, UNESCO menetapkan batik Indonesia sebagai "Warisan Budaya Takbenda".</p>
+          <div class="col-md-4">
+            <div class="card h-100 p-3">
+              <h5>Pengakuan Dunia</h5>
+              <p>Pada 2 Oktober 2009, UNESCO menetapkan batik Indonesia sebagai Warisan Budaya Takbenda.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="motif">
-        <h2>Jenis & Makna Motif</h2>
-        <div class="grid two" style="margin-top:12px">
-          <div class="card">
-            <h3>Parang</h3>
-            <p class="muted">Motif lama melambangkan keberanian dan keteguhan. Dipakai keluarga keraton.</p>
+    <!-- Motif -->
+    <section id="motif" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="mb-4">Jenis & Makna Motif</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card p-3 h-100">
+              <h6>Parang</h6>
+              <p>Melambangkan keberanian dan keteguhan.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Mega Mendung</h3>
-            <p class="muted">Dari Cirebon, motif awan ini melambangkan harapan dan kesejukan.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="card p-3 h-100">
+              <h6>Mega Mendung</h6>
+              <p>Dari Cirebon, bermakna harapan dan kesejukan.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Truntum</h3>
-            <p class="muted">Motif bermakna cinta yang tumbuh kembali. Sering dipakai pada pernikahan.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="card p-3 h-100">
+              <h6>Truntum</h6>
+              <p>Melambangkan cinta yang tumbuh kembali.</p>
+            </div>
           </div>
-          <div class="card">
-            <h3>Kawung</h3>
-            <p class="muted">Berbentuk bulatan mirip buah aren, melambangkan kesucian dan keadilan.</p>
-          </div>
-          <div class="card">
-            <h3>Sido Mukti</h3>
-            <p class="muted">Dipakai dalam upacara pernikahan, melambangkan harapan hidup makmur dan bahagia.</p>
-          </div>
-          <div class="card">
-            <h3>Lasem</h3>
-            <p class="muted">Dikenal dengan warna merah khas, mencerminkan keberanian dan semangat.</p>
-          </div>
-          <div class="card">
-            <h3>Sekar Jagad</h3>
-            <p class="muted">Motif penuh warna yang menggambarkan keragaman dan keindahan dunia.</p>
-          </div>
-          <div class="card">
-            <h3>Cendrawasih</h3>
-            <p class="muted">Terinspirasi dari burung cendrawasih, melambangkan keanggunan dan keindahan.</p>
+          <div class="col-md-6 col-lg-3">
+            <div class="card p-3 h-100">
+              <h6>Kawung</h6>
+              <p>Bulatan mirip buah aren, melambangkan keadilan.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="proses">
-        <h2>Proses Pembuatan Batik (Ringkas)</h2>
-        <ol class="muted">
-          <li>Desain pola — ditentukan oleh perancang/pembatik.</li>
-          <li>Gambarkan pola pada kain dengan pensil / canting.</li>
-          <li>Tulis malam (wax) dengan canting untuk menutup area tertentu.</li>
-          <li>Pewarnaan kain dengan celupan.</li>
-          <li>Pencelupan ulang & penghilangan malam untuk menampilkan motif akhir.</li>
+    <!-- Proses -->
+    <section id="proses" class="py-5">
+      <div class="container">
+        <h2 class="mb-4">Proses Pembuatan Batik</h2>
+        <ol class="text-muted">
+          <li>Desain pola</li>
+          <li>Gambar pola di kain</li>
+          <li>Tulis malam (wax) dengan canting</li>
+          <li>Pewarnaan kain dengan celupan</li>
+          <li>Penghilangan malam</li>
         </ol>
-      </section>
+      </div>
+    </section>
 
-      <section id="galeri">
-        <h2>Galeri Batik</h2>
-        <div class="gallery" style="margin-top:10px">
-          <img src="https://images.unsplash.com/photo-1520975698514-3c7a6dc0f9b0?q=80&w=800" alt="batik1" data-large="https://images.unsplash.com/photo-1520975698514-3c7a6dc0f9b0?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1520975698530-8a9f0e3f4a2b?q=80&w=800" alt="batik2" data-large="https://images.unsplash.com/photo-1520975698530-8a9f0e3f4a2b?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800" alt="batik3" data-large="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1503342217505-b0a15a0b5e1c?q=80&w=800" alt="batik4" data-large="https://images.unsplash.com/photo-1503342217505-b0a15a0b5e1c?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1598935886995-17e54e7c6f0d?q=80&w=800" alt="batik5" data-large="https://images.unsplash.com/photo-1598935886995-17e54e7c6f0d?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1599475733762-95e6a6910e33?q=80&w=800" alt="batik6" data-large="https://images.unsplash.com/photo-1599475733762-95e6a6910e33?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1603386325955-bdf6f2a444ef?q=80&w=800" alt="batik7" data-large="https://images.unsplash.com/photo-1603386325955-bdf6f2a444ef?q=80&w=2000">
-          <img src="https://images.unsplash.com/photo-1625466875276-c663e7f6f84e?q=80&w=800" alt="batik8" data-large="https://images.unsplash.com/photo-1625466875276-c663e7f6f84e?q=80&w=2000">
+    <!-- Galeri -->
+    <section id="galeri" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="mb-4">Galeri Batik</h2>
+        <div class="row row-cols-2 row-cols-md-4 g-3">
+          <div class="col"><img src="https://images.unsplash.com/photo-1520975698514-3c7a6dc0f9b0?q=80&w=800"
+              class="img-fluid gallery"></div>
+          <div class="col"><img src="https://images.unsplash.com/photo-1520975698530-8a9f0e3f4a2b?q=80&w=800"
+              class="img-fluid gallery"></div>
+          <div class="col"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800"
+              class="img-fluid gallery"></div>
+          <div class="col"><img src="https://images.unsplash.com/photo-1503342217505-b0a15a0b5e1c?q=80&w=800"
+              class="img-fluid gallery"></div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="kontak">
-        <h2>Kontak</h2>
-        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:12px">
-          <div class="card" style="flex:1;min-width:220px">
-            <strong>Alamat</strong>
-            <p class="muted">Yogyakarta, Indonesia</p>
+    <!-- Kontak -->
+    <section id="kontak" class="py-5">
+      <div class="container">
+        <h2 class="mb-4">Kontak</h2>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="card p-3 h-100">
+              <strong>Alamat</strong>
+              <p>Yogyakarta, Indonesia</p>
+            </div>
           </div>
-          <div class="card" style="flex:1;min-width:220px">
-            <strong>Email</strong>
-            <p class="muted">hello@example.com</p>
+          <div class="col-md-6">
+            <div class="card p-3 h-100">
+              <strong>Email</strong>
+              <p>hello@example.com</p>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
       © Pengenalan Batik — Edukasi Budaya Indonesia
     </footer>
   </div>
 
-  <!-- Modal untuk preview gambar -->
-  <div id="modal" class="modal" role="dialog" aria-hidden="true">
-    <div class="modal-content card">
-      <span id="closeBtn" class="close">✕</span>
-      <img id="modalImg" src="" alt="preview" style="width:100%;height:auto;border-radius:8px">
-    </div>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-  <scr
+</html>
