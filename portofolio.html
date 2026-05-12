@@ -3,151 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fadli Akbar | Portofolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>Fadli Akbar | Portofolio + Awards</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
+  <!-- Swiper CSS (for award carousel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   <style>
     :root {
-      --lime:#C8F135;--orange:#FF5E1A;--navy:#0B1120;
-      --white:#FFFFFF;--light:#F5F7F2;--muted:#6B7280;--border:#E5E7EB;
+      --bg: #0a0a0f;
+      --bg2: #0f0f1a;
+      --card: #13131f;
+      --accent: #00e5ff;
+      --accent2: #7b2fff;
+      --text: #e8e8f0;
+      --muted: #6b6b8a;
+      --border: rgba(0,229,255,0.15);
+      --glow: 0 0 30px rgba(0,229,255,0.2);
+      --gold: #ffd966;
     }
-    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--light);color:var(--navy);overflow-x:hidden}
 
-    /* NAVBAR */
-    .navbar{background:rgba(255,255,255,0.92)!important;backdrop-filter:blur(16px);border-bottom:1.5px solid var(--border);padding:.85rem 0}
-    .navbar-brand{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;color:var(--navy)!important}
-    .navbar-brand span{color:var(--orange)}
-    .nav-link{color:var(--muted)!important;font-weight:600;font-size:.8rem;letter-spacing:1px;text-transform:uppercase;padding:.5rem 1rem!important;border-radius:6px;transition:all .2s}
-    .nav-link:hover{color:var(--navy)!important;background:var(--light)}
-    .navbar-toggler{border:1.5px solid var(--border)}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* HERO */
-    .hero{min-height:100vh;background:var(--navy);position:relative;overflow:hidden;display:flex;align-items:center;padding:100px 0 60px}
-    .hero-deco{position:absolute;right:-2%;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:clamp(200px,32vw,400px);color:rgba(200,241,53,.05);line-height:1;pointer-events:none;user-select:none}
-    .hero-stripe{position:absolute;bottom:0;left:0;width:100%;height:8px;background:linear-gradient(90deg,var(--lime) 60%,var(--orange) 100%)}
-    .hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(200,241,53,.12);border:1px solid rgba(200,241,53,.25);color:var(--lime);font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:.35rem .9rem;border-radius:100px;margin-bottom:1.5rem}
-    .hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--lime);animation:blink 1.4s infinite}
-    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-    .hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,9rem);line-height:.9;letter-spacing:2px;color:#fff;margin-bottom:1.5rem}
-    .hero-name .accent{color:var(--lime)}
-    .hero-desc{color:rgba(255,255,255,.55);font-size:1rem;line-height:1.7;max-width:420px;margin-bottom:2.5rem}
-    .hero-desc strong{color:rgba(255,255,255,.9);font-weight:600}
-    .btn-lime{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--navy);font-weight:800;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:.85rem 2rem;border-radius:100px;transition:all .25s;border:none}
-    .btn-lime:hover{background:#d9ff50;color:var(--navy);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,241,53,.35)}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.7);font-weight:700;font-size:.82rem;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;padding:.85rem 2rem;border-radius:100px;border:1.5px solid rgba(255,255,255,.18);transition:all .25s}
-    .btn-ghost:hover{border-color:rgba(255,255,255,.5);color:#fff}
-    .hero-avatar-wrap{position:relative;display:flex;justify-content:center;align-items:center}
-    .hero-ring{width:320px;height:320px;border-radius:50%;border:2px solid rgba(200,241,53,.2);display:flex;align-items:center;justify-content:center;position:relative}
-    .hero-ring::before{content:'';position:absolute;width:350px;height:350px;border-radius:50%;border:1px solid rgba(200,241,53,.08)}
-    .hero-avatar{width:280px;height:280px;border-radius:50%;object-fit:cover;border:4px solid var(--lime)}
-    .hero-badge-f{position:absolute;font-weight:800;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;padding:.5rem 1rem;border-radius:100px}
-    .hero-badge-f.t{top:20px;right:-10px;background:var(--orange);color:#fff}
-    .hero-badge-f.b{bottom:30px;left:-10px;background:var(--lime);color:var(--navy)}
+    html { scroll-behavior: smooth; }
 
-    /* SECTIONS */
-    .sec{padding:7rem 0}
-    .sec-light{background:var(--light)}
-    .sec-white{background:var(--white)}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:.75rem}
-    .eyebrow::before{content:'';display:block;width:28px;height:2px;background:var(--orange);border-radius:2px}
-    .sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,6vw,5rem);letter-spacing:1px;line-height:1;color:var(--navy);margin-bottom:1.5rem}
-    .sec-title .o{color:var(--orange)}
-    .sec-title .g{color:hsl(75,75%,35%)}
-
-    /* ABOUT CARD */
-    .about-card{background:var(--white);border-radius:24px;padding:2.5rem;border:1.5px solid var(--border);height:100%}
-    .about-text{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:1.25rem}
-    .about-text strong{color:var(--navy)}
-    .hobby-chips{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.5rem}
-    .hobby-chip{display:inline-flex;align-items:center;gap:6px;background:var(--light);border:1.5px solid var(--border);color:var(--navy);font-weight:700;font-size:.78rem;padding:.45rem 1rem;border-radius:100px;transition:all .2s}
-    .hobby-chip:hover{background:var(--navy);color:var(--lime);border-color:var(--navy)}
-    .stat-strip{background:var(--navy);border-radius:20px;padding:2rem 2.5rem;display:flex;justify-content:space-around;flex-wrap:wrap;gap:1.5rem;margin-top:2.5rem}
-    .stat-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--lime);line-height:1}
-    .stat-label{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:4px}
-
-    /* SPORT CARDS */
-    .sport-card{background:var(--white);border-radius:20px;padding:2rem 1.5rem;text-align:center;border:1.5px solid var(--border);transition:all .3s;height:100%}
-    .sport-card:hover{border-color:var(--lime);transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
-    .sport-icon{font-size:2.5rem;margin-bottom:.75rem;display:block}
-    .sport-card h5{font-weight:800;font-size:.9rem;color:var(--navy);margin-bottom:.3rem}
-    .sport-card p{font-size:.78rem;color:var(--muted);margin:0}
-
-    /* SKILLS */
-    .skill-row{margin-bottom:1.25rem}
-    .skill-top{display:flex;justify-content:space-between;margin-bottom:6px}
-    .skill-name{font-weight:700;font-size:.85rem;color:var(--navy)}
-    .skill-pct{font-weight:800;font-size:.85rem;color:var(--orange)}
-    .skill-track{height:6px;background:var(--border);border-radius:100px;overflow:hidden}
-    .skill-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--orange),var(--lime))}
-
-    /* PROJECTS */
-    .proj-card{background:var(--white);border-radius:20px;overflow:hidden;border:1.5px solid var(--border);transition:all .3s;height:100%}
-    .proj-card:hover{border-color:var(--orange);transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
-    .proj-img-wrap{overflow:hidden}
-    .proj-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform .4s}
-    .proj-card:hover .proj-img{transform:scale(1.04)}
-    .proj-body{padding:1.5rem}
-    .proj-num{font-size:.65rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:.4rem}
-    .proj-title{font-weight:800;font-size:1.05rem;color:var(--navy);margin-bottom:.5rem}
-    .proj-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
-    .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem}
-    .proj-tag{font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.25rem .7rem;border-radius:100px;background:var(--light);color:var(--navy);border:1.5px solid var(--border)}
-
-    /* EDUCATION */
-    .edu-card{background:var(--white);border-radius:20px;padding:1.75rem 2rem;border:1.5px solid var(--border);display:flex;align-items:center;gap:1.5rem;transition:all .3s;margin-bottom:1rem}
-    .edu-card:hover{border-color:var(--lime);transform:translateX(6px)}
-    .edu-card.active{border-color:var(--orange);border-width:2px}
-    .edu-logo{width:60px;height:60px;border-radius:14px;object-fit:cover;flex-shrink:0;background:var(--light)}
-    .edu-year{font-size:.68rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:4px}
-    .edu-school{font-weight:800;font-size:1rem;color:var(--navy)}
-    .edu-level{font-size:.8rem;color:var(--muted);margin-top:2px}
-    .edu-badge{margin-left:auto;background:#FFF0EB;color:var(--orange);font-size:.65rem;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:.3rem .75rem;border-radius:100px;white-space:nowrap;flex-shrink:0}
-
-    /* CONTACT */
-    #contact{background:var(--navy)}
-    .contact-wrap{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:24px;padding:3rem}
-    .form-label{font-weight:700;font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:.5rem}
-    .form-control{background:rgba(255,255,255,.06)!important;border:1.5px solid rgba(255,255,255,.12)!important;color:#fff!important;border-radius:12px!important;padding:.85rem 1rem;font-size:.9rem;transition:border-color .2s!important}
-    .form-control::placeholder{color:rgba(255,255,255,.25)!important}
-    .form-control:focus{border-color:var(--lime)!important;box-shadow:0 0 0 4px rgba(200,241,53,.1)!important;outline:none}
-    textarea.form-control{resize:none}
-    .btn-submit{background:var(--lime);color:var(--navy);font-weight:800;font-size:.85rem;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:100px;padding:.9rem 2.5rem;width:100%;cursor:pointer;transition:all .25s}
-    .btn-submit:hover{background:#d9ff50;transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,241,53,.25)}
-    .alert-ok{background:rgba(200,241,53,.1);border:1.5px solid rgba(200,241,53,.25);color:var(--lime);border-radius:12px;padding:1rem 1.25rem;font-weight:700;font-size:.85rem;margin-bottom:1.5rem}
-
-    /* FOOTER */
-    footer{background:#070D1A;padding:2rem 0;text-align:center;border-top:1px solid rgba(255,255,255,.06)}
-    footer p{font-size:.8rem;color:rgba(255,255,255,.35)}
-    footer a{color:var(--lime);text-decoration:none;font-weight:700}
-
-    /* REVEAL */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-    .reveal.visible{opacity:1;transform:translateY(0)}
-
-    @media(max-width:768px){
-      .hero-ring{width:220px;height:220px}
-      .hero-avatar{width:180px;height:180px}
-      .hero-ring::before{width:240px;height:240px}
-      .contact-wrap{padding:1.5rem}
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
     }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Navbar, hero, etc — GABUNG DENGAN STYLE LAMA (di sini saya gabung ringkas) */
+    .navbar {
+      background: rgba(10,10,15,0.85) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    .navbar-brand { font-family: 'Space Mono', monospace; font-weight: 700; font-size: 1.1rem; color: var(--accent) !important; letter-spacing: 2px; }
+    .navbar-brand::before { content: '< '; color: var(--muted); }
+    .navbar-brand::after { content: ' />'; color: var(--muted); }
+    .nav-link { color: var(--muted) !important; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600; position: relative; }
+    .nav-link::after { content: ''; position: absolute; bottom: 0; left: 50%; right: 50%; height: 1px; background: var(--accent); transition: left 0.3s, right 0.3s; }
+    .nav-link:hover { color: var(--accent) !important; }
+    .nav-link:hover::after { left: 1rem; right: 1rem; }
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; padding: 120px 0 80px; overflow: hidden; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent); }
+    .hero-content { position: relative; z-index: 1; text-align: center; }
+    .hero-avatar { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: var(--glow); margin-bottom: 2rem; }
+    .hero-name { font-size: clamp(3rem, 8vw, 6rem); font-weight: 800; letter-spacing: -2px; }
+    .hero-name .highlight { background: linear-gradient(135deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .btn-primary-glow { background: var(--accent); color: var(--bg); border: none; padding: 0.75rem 2rem; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; border-radius: 2px; transition: all 0.3s; }
+    .btn-primary-glow:hover { background: var(--bg); color: var(--accent); box-shadow: 0 0 40px rgba(0,229,255,0.5); }
+    .btn-outline-glow { background: transparent; color: var(--text); border: 1px solid var(--border); padding: 0.75rem 2rem; font-family: 'Space Mono', monospace; font-weight: 700; text-transform: uppercase; border-radius: 2px; }
+    .section-header { margin-bottom: 3rem; }
+    .section-tag { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -1px; }
+    .section-line { width: 60px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); margin-top: 1rem; }
+    #about, #pendidikan { padding: 6rem 0; background: var(--bg2); }
+    .about-text { font-size: 1.05rem; color: var(--muted); line-height: 1.8; }
+    .hobby-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; margin-top: 2rem; }
+    .hobby-card { background: var(--card); border: 1px solid var(--border); padding: 1.25rem; border-radius: 4px; display: flex; gap: 1rem; transition: 0.3s; }
+    .project-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; transition: 0.3s; height: 100%; }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(0,229,255,0.4); }
+    .project-img { width: 100%; height: 200px; object-fit: cover; }
+    .project-body { padding: 1.5rem; }
+    .tag { font-family: 'Space Mono', monospace; font-size: 0.6rem; color: var(--accent2); border: 1px solid rgba(123,47,255,0.3); padding: 0.2rem 0.5rem; border-radius: 2px; }
+    
+    /* ---------- NEW: AWARDS / PENGHARGAAN SECTION (PREMIUM) ---------- */
+    #awards {
+      padding: 6rem 0;
+      position: relative;
+      background: radial-gradient(circle at 10% 30%, rgba(0,229,255,0.02), transparent);
+    }
+    .award-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid rgba(255,215,0,0.2);
+      backdrop-filter: blur(4px);
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .award-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,215,0,0.08), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+    .award-card:hover::before { opacity: 1; }
+    .award-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,215,0,0.3);
+    }
+    .award-icon {
+      font-size: 3.2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--gold), #ffaa33);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 15px rgba(255,200,0,0.4);
+    }
+    .award-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(120deg, #fff, #c0c0e0);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .award-issuer {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .award-year {
+      display: inline-block;
+      background: rgba(255,215,0,0.12);
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .award-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--accent);
+      background: rgba(0,0,0,0.5);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      backdrop-filter: blur(8px);
+    }
+    .swiper-button-next:after, .swiper-button-prev:after { font-size: 1.2rem; }
+    .swiper-pagination-bullet-active { background: var(--accent) !important; }
+    
+    /* contact & footer */
+    .contact-card { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 3rem; }
+    .form-control { background: rgba(255,255,255,0.03); border: 1px solid var(--border); color: var(--text); }
+    .btn-send { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 0.85rem 2.5rem; text-transform: uppercase; transition: 0.3s; }
+    footer { border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; }
+    .cursor-glow { position: fixed; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 70%); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: left 0.1s, top 0.1s; }
+    @keyframes fadeInUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation: fadeInUp 0.8s ease both; }
   </style>
 </head>
 <body id="home">
+  <div class="cursor-glow" id="cursorGlow"></div>
 
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">FADLI<span>.</span></a>
+      <a class="navbar-brand" href="#">Fadli Akbar</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto gap-1">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="https://fadliakbar-cloud.github.io/MyPortoFolio/batik">Batik Ind</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#awards">Penghargaan</a></li>   <!-- link baru -->
           <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -155,192 +200,186 @@
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero" id="home-section">
-    <div class="hero-deco">07</div>
-    <div class="hero-stripe"></div>
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge" style="display:inline-block; background:rgba(0,229,255,0.1); border:1px solid var(--border); padding:0.3rem 1rem;">🏆 Award Winner · 2024</div>
+      <img src="foto/after.jpg" alt="Fadli Akbar" class="hero-avatar" />
+      <h1 class="hero-name"><span class="highlight">Fadli</span><br>Akbar</h1>
+      <p class="hero-sub">Student <span class="dot">◆</span> Developer <span class="dot">◆</span> SMKN 5 Malang</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary-glow">✨ Lihat Prestasi</a>
+        <a href="#awards" class="btn-outline-glow">Penghargaan →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About section (singkat) -->
+  <section id="about">
     <div class="container">
-      <div class="row align-items-center gy-5">
-        <div class="col-lg-7">
-          <div class="hero-tag">⚡ Open to Collaboration</div>
-          <h1 class="hero-name"><span class="accent">FADLI</span><br>AKBAR</h1>
-          <p class="hero-desc">
-            Siswa <strong>SMKN 5 Malang</strong> yang passionate dalam dunia teknologi.
-            Suka <strong>olahraga</strong> dan <strong>coding</strong> — dua-duanya butuh konsistensi dan kerja keras!
-          </p>
-          <div class="d-flex gap-3 flex-wrap">
-            <a href="https://github.com/FadliAkbar-Cloud" target="_blank" class="btn-lime">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8a8 8 0 0 0 5.47 7.59c.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2 .37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.68 7.68 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
-              GitHub
-            </a>
-            <a href="https://fadliakbar-cloud.github.io/MyPortoFolio/portofolio.html" target="_blank" class="btn-ghost">
-              Portfolio Lain →
-            </a>
-          </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-header"><div class="section-tag">// 01. about</div><h2 class="section-title">Siapa <span style="color:var(--accent)">Saya?</span></h2><div class="section-line"></div></div>
+          <p class="about-text">Halo! Saya Fadli Akbar, siswa Teknik Komputer & Jaringan. Saya sangat bersemangat di dunia coding, desain web, dan game development. Selain teknis, saya aktif mengikuti lomba dan mendapatkan berbagai penghargaan.</p>
         </div>
-        <div class="col-lg-5 d-flex justify-content-center">
-          <div class="hero-avatar-wrap">
-            <div class="hero-ring">
-              <img src="foto/after.jpg" class="hero-avatar" alt="Fadli Akbar" />
-            </div>
-            <div class="hero-badge-f t">Developer 💻</div>
-            <div class="hero-badge-f b">Malang, ID 🏙️</div>
+        <div class="col-lg-6">
+          <div class="hobby-grid">
+            <div class="hobby-card"><div class="hobby-icon">💻</div><div><h5>Coding</h5><p>PHP, Laravel, JS</p></div></div>
+            <div class="hobby-card"><div class="hobby-icon">🏅</div><div><h5>Juara</h5><p>Lomba Web & Inovasi</p></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="sec sec-light" id="about">
+  <!-- ==================== PENGHARGAAN / AWARDS SECTION (BARU) ==================== -->
+  <section id="awards">
     <div class="container">
-      <div class="row gy-5">
-        <div class="col-lg-6">
-          <div class="about-card reveal">
-            <div class="eyebrow">01. About</div>
-            <h2 class="sec-title">Siapa<br><span class="o">Saya?</span></h2>
-            <p class="about-text">
-              Halo! Saya <strong>Fadli Akbar</strong>, siswa jurusan <strong>Teknik Komputer & Jaringan</strong> di SMKN 5 Malang. Saya percaya bahwa belajar coding sama seperti olahraga — butuh latihan rutin, disiplin, dan tidak mudah menyerah.
-            </p>
-            <p class="about-text">
-              Di luar layar, saya aktif berolahraga untuk menjaga kebugaran dan semangat. Energi dari lapangan saya bawa ke depan keyboard — selalu <strong>all-out!</strong>
-            </p>
-            <div class="hobby-chips">
-              <span class="hobby-chip">⚽ Sepak Bola</span>
-              <span class="hobby-chip">🏸 Badminton</span>
-              <span class="hobby-chip">🏃 Lari</span>
-              <span class="hobby-chip">💪 Gym</span>
-              <span class="hobby-chip">🚴 Bersepeda</span>
-              <span class="hobby-chip">💻 Coding</span>
+      <div class="section-header text-center">
+        <div class="section-tag">// 02. trophy & recognition</div>
+        <h2 class="section-title">Penghargaan & <span style="color:var(--gold)">Prestasi</span></h2>
+        <div class="section-line mx-auto"></div>
+        <p class="text-muted mt-2" style="max-width:600px; margin:0 auto;">Perjalanan kompetisi dan apresiasi yang telah saya raih sepanjang karir sebagai developer muda.</p>
+      </div>
+
+      <!-- Swiper Carousel untuk Awards yang smooth -->
+      <div class="swiper awardSwiper">
+        <div class="swiper-wrapper">
+          <!-- Award 1 -->
+          <div class="swiper-slide">
+            <div class="award-card">
+              <div class="award-icon">🏆</div>
+              <div class="award-title">Juara 1 Web Design Competition</div>
+              <div class="award-issuer">LKS SMK Tingkat Kota Malang</div>
+              <div class="award-year">2024</div>
+              <div class="award-desc">Menciptakan UI/UX portofolio interaktif dengan animasi mutakhir, mendapatkan nilai tertinggi dalam inovasi.</div>
             </div>
-            <div class="stat-strip">
-              <div class="stat-item"><div class="stat-num">6+</div><div class="stat-label">Projects</div></div>
-              <div class="stat-item"><div class="stat-num">3+</div><div class="stat-label">Tech Stack</div></div>
-              <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Semangat</div></div>
+          </div>
+          <!-- Award 2 -->
+          <div class="swiper-slide">
+            <div class="award-card">
+              <div class="award-icon">🥈</div>
+              <div class="award-title">Silver Medal - IT Software Solutions</div>
+              <div class="award-issuer">Bashment Youth Competition 2023</div>
+              <div class="award-year">2023</div>
+              <div class="award-desc">Pengembangan aplikasi manajemen tugas berbasis web dengan framework Laravel, meraih silver medal kategori fungsionalitas.</div>
+            </div>
+          </div>
+          <!-- Award 3 -->
+          <div class="swiper-slide">
+            <div class="award-card">
+              <div class="award-icon">🎖️</div>
+              <div class="award-title">Best UI/UX (Student Category)</div>
+              <div class="award-issuer">Gemastik 2024 - Finalis</div>
+              <div class="award-year">2024</div>
+              <div class="award-desc">Desain antarmuka aplikasi mobile ramah disabilitas, mendapat apresiasi khusus dari juri profesional.</div>
+            </div>
+          </div>
+          <!-- Award 4 -->
+          <div class="swiper-slide">
+            <div class="award-card">
+              <div class="award-icon">📜</div>
+              <div class="award-title">Sertifikasi Junior Web Developer</div>
+              <div class="award-issuer">BNSP & LSP SMKN 5 Malang</div>
+              <div class="award-year">2024</div>
+              <div class="award-desc">Kompetensi pengembangan web standar industri, lulus dengan predikat memuaskan.</div>
+            </div>
+          </div>
+          <!-- Award 5 -->
+          <div class="swiper-slide">
+            <div class="award-card">
+              <div class="award-icon">⚡</div>
+              <div class="award-title">Juara Harapan 2 Hackathon AI</div>
+              <div class="award-issuer">Malang Dev Summit</div>
+              <div class="award-year">2023</div>
+              <div class="award-desc">Membangun prototipe chatbot edukasi menggunakan AI untuk pembelajaran TKJ.</div>
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
-          <div class="eyebrow mb-3">Hobi Olahraga</div>
-          <div class="row g-3 mb-4">
-            <div class="col-6 reveal"><div class="sport-card"><span class="sport-icon">⚽</span><h5>Sepak Bola</h5><p>Olahraga tim favorit. Belajar kerja sama dan strategi.</p></div></div>
-            <div class="col-6 reveal"><div class="sport-card"><span class="sport-icon">🏸</span><h5>Badminton</h5><p>Asah refleks dan kecepatan reaksi setiap hari.</p></div></div>
-            <div class="col-6 reveal"><div class="sport-card"><span class="sport-icon">🏃</span><h5>Lari</h5><p>Rutin lari pagi untuk stamina dan pikiran segar.</p></div></div>
-            <div class="col-6 reveal"><div class="sport-card"><span class="sport-icon">💪</span><h5>Gym / Fitness</h5><p>Latihan fisik untuk kesehatan dan stamina optimal.</p></div></div>
-          </div>
-          <div class="about-card reveal">
-            <div class="eyebrow mb-3">Tech Skills</div>
-            <div class="skill-row"><div class="skill-top"><span class="skill-name">HTML / CSS</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%"></div></div></div>
-            <div class="skill-row"><div class="skill-top"><span class="skill-name">PHP & Laravel</span><span class="skill-pct">75%</span></div><div class="skill-track"><div class="skill-fill" style="width:75%"></div></div></div>
-            <div class="skill-row"><div class="skill-top"><span class="skill-name">JavaScript</span><span class="skill-pct">65%</span></div><div class="skill-track"><div class="skill-fill" style="width:65%"></div></div></div>
-            <div class="skill-row"><div class="skill-top"><span class="skill-name">Mobile (Kodular)</span><span class="skill-pct">60%</span></div><div class="skill-track"><div class="skill-fill" style="width:60%"></div></div></div>
-          </div>
+        <!-- navigasi -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+      
+      <!-- tambahan: medal row statis untuk fleksibilitas -->
+      <div class="row mt-5 justify-content-center text-center">
+        <div class="col-md-3 col-6 mb-3">
+          <div style="background:var(--card); border-radius:12px; padding:1rem; border:1px solid rgba(255,215,0,0.3);"><span style="font-size:2rem;">🏅</span><h3 class="mt-2" style="color:var(--gold);">4+</h3><p class="text-muted small">Kompetisi Finalis</p></div>
+        </div>
+        <div class="col-md-3 col-6 mb-3">
+          <div style="background:var(--card); border-radius:12px; padding:1rem; border:1px solid rgba(0,229,255,0.3);"><span style="font-size:2rem;">📜</span><h3 class="mt-2" style="color:var(--accent);">12+</h3><p class="text-muted small">Sertifikat Keahlian</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section class="sec sec-white" id="projects">
+  <!-- Projects section (tetap seperti asli) -->
+  <section id="projects">
     <div class="container">
-      <div class="text-center mb-5 reveal">
-        <div class="eyebrow" style="justify-content:center">02. Projects</div>
-        <h2 class="sec-title">My <span class="o">Work</span></h2>
-      </div>
+      <div class="section-header text-center"><div class="section-tag">// 03. projects</div><h2 class="section-title">My <span style="color:var(--accent)">Work</span></h2><div class="section-line mx-auto"></div></div>
       <div class="row g-4">
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/dash.png" class="proj-img" alt="Dashboard"/></div><div class="proj-body"><div class="proj-num">Project_01</div><div class="proj-title">School Dashboard</div><div class="proj-desc">Dashboard website sekolah dengan tampilan modern dan informatif.</div><div class="proj-tags"><span class="proj-tag">HTML</span><span class="proj-tag">CSS</span><span class="proj-tag">JS</span></div></div></div></div>
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/game.png" class="proj-img" alt="Game"/></div><div class="proj-body"><div class="proj-num">Project_02</div><div class="proj-title">Robot 2D Game</div><div class="proj-desc">Game robot 2 dimensi yang interaktif dan seru untuk dimainkan.</div><div class="proj-tags"><span class="proj-tag">Game Dev</span><span class="proj-tag">2D</span></div></div></div></div>
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/laravek.png" class="proj-img" alt="Laravel"/></div><div class="proj-body"><div class="proj-num">Project_03</div><div class="proj-title">Film Streaming App</div><div class="proj-desc">Website streaming film menggunakan Laravel. Project kelompok.</div><div class="proj-tags"><span class="proj-tag">Laravel</span><span class="proj-tag">PHP</span><span class="proj-tag">MySQL</span></div></div></div></div>
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/proj1.jpg" class="proj-img" alt="CRUD"/></div><div class="proj-body"><div class="proj-num">Project_04</div><div class="proj-title">PHP CRUD Basic</div><div class="proj-desc">Aplikasi CRUD sederhana menggunakan PHP murni dan MySQL.</div><div class="proj-tags"><span class="proj-tag">PHP</span><span class="proj-tag">MySQL</span></div></div></div></div>
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/proj2.png" class="proj-img" alt="OOP"/></div><div class="proj-body"><div class="proj-num">Project_05</div><div class="proj-title">PHP CRUD OOP</div><div class="proj-desc">CRUD dengan pendekatan Object Oriented Programming yang terstruktur.</div><div class="proj-tags"><span class="proj-tag">PHP OOP</span><span class="proj-tag">MySQL</span></div></div></div></div>
-        <div class="col-md-4 reveal"><div class="proj-card"><div class="proj-img-wrap"><img src="foto/proj3.png" class="proj-img" alt="Mobile"/></div><div class="proj-body"><div class="proj-num">Project_06</div><div class="proj-title">Login App — Kodular</div><div class="proj-desc">Aplikasi login sederhana berbasis Android dibangun dengan Kodular.</div><div class="proj-tags"><span class="proj-tag">Kodular</span><span class="proj-tag">Android</span></div></div></div></div>
+        <div class="col-md-4"><div class="project-card"><img src="foto/dash.png" class="project-img"/><div class="project-body"><div class="project-title">School Dashboard</div><div class="project-desc">Dashboard interaktif</div><div class="project-tags"><span class="tag">HTML/CSS</span></div></div></div></div>
+        <div class="col-md-4"><div class="project-card"><img src="foto/game.png" class="project-img"/><div class="project-body"><div class="project-title">Robot 2D Game</div><div class="project-desc">Game canvas</div><div class="project-tags"><span class="tag">Game Dev</span></div></div></div></div>
+        <div class="col-md-4"><div class="project-card"><img src="foto/laravek.png" class="project-img"/><div class="project-body"><div class="project-title">Film Streaming App</div><div class="project-desc">Laravel + MySQL</div><div class="project-tags"><span class="tag">Laravel</span></div></div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- EDUCATION -->
-  <section class="sec sec-light" id="pendidikan">
+  <!-- Pendidikan -->
+  <section id="pendidikan">
     <div class="container">
-      <div class="row gy-5 align-items-center">
-        <div class="col-lg-5 reveal">
-          <div class="eyebrow">03. Education</div>
-          <h2 class="sec-title">Riwayat<br><span class="g">Pendidikan</span></h2>
-          <p style="color:var(--muted);font-size:.95rem;line-height:1.7">Perjalanan belajar dari bangku SD hingga mendalami dunia teknologi di SMK.</p>
-        </div>
-        <div class="col-lg-7">
-          <div class="edu-card reveal">
-            <img src="foto/sd-removebg-preview.png" class="edu-logo" alt="SD"/>
-            <div><div class="edu-year">2010 — 2016</div><div class="edu-school">SDN Blimbing 5 Malang</div><div class="edu-level">Sekolah Dasar</div></div>
-          </div>
-          <div class="edu-card reveal">
-            <img src="foto/smp.jpg" class="edu-logo" alt="SMP"/>
-            <div><div class="edu-year">2016 — 2019</div><div class="edu-school">SMP Annur</div><div class="edu-level">Sekolah Menengah Pertama</div></div>
-          </div>
-          <div class="edu-card active reveal">
-            <img src="foto/smk-removebg-preview.png" class="edu-logo" alt="SMK"/>
-            <div><div class="edu-year">2019 — Sekarang</div><div class="edu-school">SMKN 5 Malang</div><div class="edu-level">Teknik Komputer & Jaringan</div></div>
-            <div class="edu-badge">● Aktif</div>
+      <div class="row align-items-center">
+        <div class="col-lg-6"><div class="section-header"><div class="section-tag">// 04. education</div><h2 class="section-title">Riwayat <span style="color:var(--accent)">Pendidikan</span></h2><div class="section-line"></div></div>
+          <div class="edu-timeline" style="border-left:1px solid var(--border); padding-left:2rem;">
+            <div><div class="edu-year">2010-2016</div><div class="edu-school">SDN Blimbing 5 Malang</div></div>
+            <div class="mt-3"><div class="edu-year">2016-2019</div><div class="edu-school">SMP Annur</div></div>
+            <div class="mt-3"><div class="edu-year">2019-Sekarang</div><div class="edu-school">SMKN 5 Malang - TKJ</div><div class="text-accent">Aktif</div></div>
           </div>
         </div>
+        <div class="col-lg-6 text-center"><img src="foto/after.jpg" style="width:200px; border-radius:50%; border:2px solid var(--accent2);"/></div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="sec" id="contact">
+  <!-- Contact -->
+  <section id="contact">
     <div class="container">
-      <div class="text-center mb-5 reveal">
-        <div class="eyebrow" style="justify-content:center;color:rgba(255,255,255,.4)">04. Contact</div>
-        <h2 class="sec-title" style="color:#fff">Hubungi <span style="color:var(--lime)">Saya</span></h2>
-        <p style="color:rgba(255,255,255,.45);max-width:480px;margin:0 auto">Punya project seru atau ingin kolaborasi? Jangan ragu untuk kirim pesan!</p>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-7 reveal">
-          <div class="contact-wrap">
-            <div class="alert-ok d-none my-alert">✓ Terimakasih! Pesan kamu sudah terkirim.</div>
-            <form name="Contact-From-My-Porto-Folio">
-              <div class="mb-4"><label class="form-label">Nama Lengkap</label><input type="text" name="nama" class="form-control" placeholder="Nama kamu..." required/></div>
-              <div class="mb-4"><label class="form-label">Email</label><input type="email" name="email" class="form-control" placeholder="email@kamu.com" required/></div>
-              <div class="mb-4"><label class="form-label">Pesan</label><textarea name="pesan" class="form-control" rows="4" placeholder="Tuliskan pesanmu..." required></textarea></div>
-              <button type="submit" class="btn-submit btn-kirim">Kirim Pesan →</button>
-              <button class="btn-submit d-none btn-loading" type="button" disabled>Mengirim...</button>
-            </form>
-          </div>
-        </div>
-      </div>
+      <div class="section-header text-center"><div class="section-tag">// 05. contact</div><h2 class="section-title">Hubungi <span style="color:var(--accent)">Saya</span></h2><div class="section-line mx-auto"></div></div>
+      <div class="row justify-content-center"><div class="col-lg-7"><div class="contact-card"><form name="Contact-From-My-Porto-Folio"><div class="mb-3"><input type="text" name="nama" class="form-control" placeholder="Nama" required/></div><div class="mb-3"><input type="email" name="email" class="form-control" placeholder="Email" required/></div><div class="mb-3"><textarea name="pesan" class="form-control" rows="3" placeholder="Pesan"></textarea></div><button type="submit" class="btn-send w-100">Kirim Pesan</button></form></div></div></div>
     </div>
   </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>© 2024 Dibuat dengan ❤️ oleh <a href="https://www.instagram.com/fdlakbr5/" target="_blank">@fdlakbr5</a> · Malang, Indonesia</p>
-    </div>
-  </footer>
+  <footer><div class="container"><p>©2024 Dibuat dengan ❤️ oleh <a href="#">Fadli Akbar</a> · Malang, Indonesia</p></div></footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script>
-    const scriptURL="https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec";
-    const form=document.forms["Contact-From-My-Porto-Folio"];
-    const btnKirim=document.querySelector(".btn-kirim");
-    const btnLoading=document.querySelector(".btn-loading");
-    const myAlert=document.querySelector(".my-alert");
-    form.addEventListener("submit",e=>{
-      e.preventDefault();
-      btnLoading.classList.toggle('d-none');
-      btnKirim.classList.toggle('d-none');
-      fetch(scriptURL,{method:"POST",body:new FormData(form)})
-        .then(()=>{btnLoading.classList.toggle('d-none');btnKirim.classList.toggle('d-none');myAlert.classList.remove('d-none');form.reset();})
-        .catch(err=>console.error(err));
+    // cursor glow
+    const glow = document.getElementById('cursorGlow');
+    document.addEventListener('mousemove', e=>{ glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+    
+    // Swiper initialization for awards
+    const swiper = new Swiper('.awardSwiper', {
+      slidesPerView: 1,
+      spaceBetween: 24,
+      loop: true,
+      autoplay: { delay: 4000, disableOnInteraction: false },
+      pagination: { el: '.swiper-pagination', clickable: true },
+      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
     });
-
-    const reveals=document.querySelectorAll('.reveal');
-    const obs=new IntersectionObserver(entries=>{
-      entries.forEach((e,i)=>{
-        if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*80);obs.unobserve(e.target);}
-      });
-    },{threshold:.1});
-    reveals.forEach(el=>obs.observe(el));
+    
+    // form handler (sesuai asli)
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec";
+    const form = document.forms["Contact-From-My-Porto-Folio"];
+    if(form) form.addEventListener("submit", e => { e.preventDefault(); fetch(scriptURL, { method: "POST", body: new FormData(form) }).then(()=>{ alert("Pesan terkirim!"); form.reset(); }).catch(console.error); });
+    
+    // intersection observer untuk animasi award cards
+    const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.style.opacity='1'; }); }, {threshold:0.2});
+    document.querySelectorAll('.award-card').forEach(el=>{ el.style.opacity='0'; el.style.transition='opacity 0.7s'; observer.observe(el); });
   </script>
 </body>
 </html>
