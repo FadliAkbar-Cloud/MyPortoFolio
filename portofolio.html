@@ -1,221 +1,601 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fadli Akbar | Portofolio</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #111118;
+            --surface2: #16161f;
+            --accent: #4af0c4;
+            --accent2: #7b5cff;
+            --text: #f0f0f8;
+            --muted: #8888aa;
+            --border: rgba(255,255,255,0.06);
+            --card-bg: rgba(255,255,255,0.03);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
-        .jumbotron {
-            padding-top: 6rem;
-            background-color: #e2edff;
+        /* ── NOISE TEXTURE ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: .4;
         }
 
-        section {
-            padding-top: 5rem;
+        /* ── NAVBAR ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 5vw;
+            background: rgba(10,10,15,0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
         }
 
-        footer {
-            background-color: #1e79a2;
+        .nav-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
         }
 
-        .navbar-brand {
-            font-weight: bold;
-            letter-spacing: 1px;
+        .nav-brand span { color: var(--accent); }
+
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: color .2s;
         }
 
-        .rounded-pill img {
+        .nav-links a:hover { color: var(--text); }
+
+        /* ── HERO ── */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5vw 4rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(74,240,196,0.08) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(123,92,255,0.1) 0%, transparent 70%);
+            top: 30%; left: 60%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -8px;
+            border-radius: 50%;
+            background: conic-gradient(var(--accent), var(--accent2), var(--accent));
+            animation: spin 6s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .avatar-inner {
+            position: relative;
+            z-index: 1;
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--bg);
+        }
+
+        .avatar-inner img {
+            width: 100%; height: 100%;
             object-fit: cover;
+        }
+
+        .avatar-placeholder {
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem; font-weight: 800;
+            color: white;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            background: rgba(74,240,196,0.08);
+            border: 1px solid rgba(74,240,196,0.2);
+            padding: 0.35rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.2rem;
+            animation: fadeUp .6s ease both;
+        }
+
+        h1.hero-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2.8rem, 8vw, 5.5rem);
+            line-height: 1.0;
+            letter-spacing: -0.04em;
+            margin-bottom: 1rem;
+            animation: fadeUp .7s .1s ease both;
+        }
+
+        h1.hero-name .accent { color: var(--accent); }
+
+        .hero-sub {
+            color: var(--muted);
+            font-size: 1.05rem;
+            font-weight: 300;
+            max-width: 420px;
+            margin: 0 auto 2.5rem;
+            animation: fadeUp .7s .2s ease both;
+        }
+
+        .hero-cta {
+            display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+            animation: fadeUp .7s .3s ease both;
+        }
+
+        .btn-primary-custom {
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            padding: 0.85rem 2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.875rem;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            text-decoration: none;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(74,240,196,0.3);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+            padding: 0.85rem 2rem;
+            border-radius: 100px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        .btn-ghost:hover { border-color: var(--muted); background: var(--card-bg); }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── SECTION SHARED ── */
+        section { padding: 6rem 5vw; position: relative; z-index: 1; }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.6rem;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(2rem, 5vw, 3rem);
+            letter-spacing: -0.03em;
+            margin-bottom: 3rem;
+        }
+
+        /* ── ABOUT ── */
+        #about {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            max-width: 1000px;
+        }
+
+        .about-text { color: var(--muted); line-height: 1.8; font-weight: 300; font-size: 1.05rem; }
+        .about-text + .about-text { margin-top: 1rem; }
+
+        .skills-list {
+            display: flex; flex-wrap: wrap; gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.35rem 0.85rem;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            letter-spacing: 0.04em;
+            transition: border-color .2s, color .2s;
+        }
+
+        .skill-tag:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* ── PROJECTS ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1100px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform .3s, border-color .3s, box-shadow .3s;
+            cursor: default;
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(74,240,196,0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .project-img {
+            width: 100%; height: 180px;
+            background: linear-gradient(135deg, var(--surface2), #1a1a28);
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .project-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        .project-img-placeholder {
+            font-size: 3rem;
+            opacity: 0.4;
+        }
+
+        .project-body { padding: 1.4rem; }
+
+        .project-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; font-weight: 300; }
+
+        /* ── EDUCATION ── */
+        #education { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+        .edu-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            max-width: 640px;
+            position: relative;
+        }
+
+        .edu-timeline::before {
+            content: '';
+            position: absolute;
+            left: 28px; top: 0; bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+        }
+
+        .edu-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            padding: 1.5rem 0;
+            position: relative;
+        }
+
+        .edu-dot {
+            flex-shrink: 0;
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            background: var(--surface2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .edu-dot img { width: 100%; height: 100%; object-fit: cover; }
+
+        .edu-info { padding-top: 0.25rem; }
+
+        .edu-level {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+
+        .edu-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+
+        /* ── CONTACT ── */
+        .contact-card {
+            max-width: 620px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .form-group { margin-bottom: 1.25rem; }
+
+        .form-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color .2s, background .2s;
+        }
+
+        .form-input:focus {
+            border-color: rgba(74,240,196,0.4);
+            background: rgba(74,240,196,0.04);
+        }
+
+        textarea.form-input { resize: vertical; min-height: 120px; }
+
+        .form-submit {
+            width: 100%;
+            background: var(--accent);
+            color: var(--bg);
+            border: none;
+            border-radius: 10px;
+            padding: 0.9rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform .2s, box-shadow .2s;
+            margin-top: 0.5rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(74,240,196,0.25);
+        }
+
+        .form-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .alert-success {
+            margin-top: 1rem;
+            background: rgba(74,240,196,0.08);
+            border: 1px solid rgba(74,240,196,0.2);
+            border-radius: 10px;
+            padding: 0.85rem 1rem;
+            color: var(--accent);
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px; height: 16px;
+            border: 2px solid rgba(10,10,15,0.3);
+            border-top-color: var(--bg);
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            vertical-align: middle;
+            margin-right: 6px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 2rem 5vw;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .footer-brand span { color: var(--accent); }
+
+        footer p { color: var(--muted); font-size: 0.825rem; }
+
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            nav { padding: 1rem 4vw; }
+            .nav-links { gap: 1.2rem; }
+            .contact-card { padding: 1.5rem; }
+            .edu-timeline::before { left: 24px; }
+            .edu-dot { width: 48px; height: 48px; }
         }
     </style>
 </head>
-
 <body id="home">
+
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #1e79a2">
-        <div class="container">
-            <a class="navbar-brand" href="#home">Fadli Akbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+    <nav>
+        <a class="nav-brand" href="#home">Fadli<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Pendidikan</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
     </nav>
 
-    <!-- Jumbotron -->
-    <section class="jumbotron text-center">
-        <img src="foto/after.jpg" alt="Fadli Akbar" width="200" class="rounded-circle img-thumbnail mb-3" />
-        <h1 class="display-5 fw-bold">Fadli Akbar</h1>
-        <p class="lead">Siswa | SMKN 5 Malang</p>
+    <!-- Hero -->
+    <section id="home" style="padding-top:8rem;">
+        <div class="hero-glow"></div>
+        <div class="hero-glow2"></div>
+        <div style="position:relative; z-index:1;">
+            <div class="avatar-wrapper" style="animation: fadeUp .5s ease both;">
+                <div class="avatar-ring"></div>
+                <div class="avatar-inner">
+                    <img src="foto/after.jpg" alt="Fadli Akbar"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="avatar-placeholder" style="display:none;">FA</div>
+                </div>
+            </div>
+            <div>
+                <div class="hero-tag">✦ Tersedia untuk Kolaborasi</div>
+                <h1 class="hero-name">Fadli<br><span class="accent">Akbar</span></h1>
+                <p class="hero-sub">Siswa SMKN 5 Malang · Pengembang Web Muda · Antusias dalam teknologi & pemrograman</p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary-custom">Lihat Proyek →</a>
+                    <a href="#contact" class="btn-ghost">Hubungi Saya</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- About -->
     <section id="about">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h2>About Me</h2>
+        <div class="section-label">Tentang Saya</div>
+        <h2 class="section-title">Siapa saya?</h2>
+        <div class="about-grid">
+            <div>
+                <p class="about-text">Saya Fadli Akbar, seorang siswa aktif di SMKN 5 Malang yang memiliki minat besar di bidang pengembangan web dan teknologi informasi.</p>
+                <p class="about-text" style="margin-top:1rem;">Dengan semangat belajar yang tinggi, saya terus mengasah kemampuan pemrograman dan membangun proyek-proyek nyata sebagai wujud dari ilmu yang saya pelajari.</p>
+                <div class="skills-list">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">HTML & CSS</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Bootstrap</span>
+                    <span class="skill-tag">OOP</span>
+                    <span class="skill-tag">Kodular</span>
+                    <span class="skill-tag">MySQL</span>
+                </div>
             </div>
-            <div class="row justify-content-center text-center">
-                <div class="col-md-5">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, obcaecati porro similique aliquid
-                        nobis omnis a debitis, libero perspiciatis commodi maiores laudantium.</p>
-                </div>
-                <div class="col-md-5">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus beatae incidunt quis
-                        exercitationem sequi. Sequi, autem. Molestias totam officiis cum ut aliquam.</p>
-                </div>
+            <div>
+                <p class="about-text">Saya percaya bahwa kode bukan hanya tentang logika, tetapi juga tentang kreativitas dan pemecahan masalah nyata yang bisa memberikan dampak positif bagi pengguna.</p>
+                <p class="about-text" style="margin-top:1rem;">Di waktu luang, saya senang mengeksplorasi teknologi baru dan mengerjakan proyek sampingan yang menantang kemampuan saya lebih jauh.</p>
             </div>
         </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>My Projects</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="foto/proj1.jpg" class="card-img-top" alt="Project 1">
-                        <div class="card-body">
-                            <p class="card-text">Saya Membuat CRUD dengan PHP</p>
-                        </div>
-                    </div>
+    <section id="projects">
+        <div class="section-label">Karya Saya</div>
+        <h2 class="section-title">Proyek Pilihan</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="foto/proj1.jpg" alt="Project 1"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="project-img-placeholder" style="display:none;">🗄️</div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="foto/proj2.png" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <p class="card-text">Saya Membuat CRUD dengan PHP menggunakan Object Oriented Programming
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <img src="foto/proj3.png" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <p class="card-text">Saya Membuat Aplikasi Login Sederhana di Kodular</p>
-                        </div>
-                    </div>
+                <div class="project-body">
+                    <div class="project-num">PROJECT 01</div>
+                    <p>Aplikasi CRUD dengan PHP — mengelola data secara dinamis menggunakan database MySQL dengan antarmuka yang sederhana dan fungsional.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Pendidikan -->
-    <section id="education">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2>Pendidikan</h2>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <div class="d-flex justify-content-around mb-4">
-                        <div class="text-center">
-                            <img src="foto/sd-removebg-preview.png" class="img-thumbnail rounded-pill mb-2" width="90"
-                                alt="SD">
-                            <p>SDN Blimbing 5 Malang</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="foto/smp.jpg" class="img-thumbnail rounded-pill mb-2" width="90" alt="SMP">
-                            <p>SMP Annur</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="foto/smk-removebg-preview.png" class="img-thumbnail rounded-pill mb-2" width="90"
-                                alt="SMK">
-                            <p>SMKN 5 Malang</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-center">
-                    <img src="foto/after.jpg" class="img-thumbnail rounded-circle" width="200" alt="Profile">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="bg-light">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h2>Contact Me</h2>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <form name="Contact-From-My-Porto-Folio">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="name" name="nama" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message" class="form-label">Pesan</label>
-                            <textarea class="form-control" id="message" name="pesan" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-kirim">Kirim</button>
-                        <button class="btn btn-primary d-none btn-loading" type="button" disabled>
-                            <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                            <span role="status">Loading...</span>
-                        </button>
-                        <div class="alert alert-success alert-dismissible fade show my-alert d-none mt-3" role="alert">
-                            <strong>Terimakasih!</strong> Pesan anda sudah terkirim.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="text-white text-center py-4">
-        <p>Dibuat oleh <a href="https://www.instagram.com/fdlakbr5/" class="text-white fw-bold">@fdlakbr5</a></p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec';
-        const form = document.forms['Contact-From-My-Porto-Folio'];
-        const btnKirim = document.querySelector('.btn-kirim');
-        const btnLoading = document.querySelector('.btn-loading');
-        const myAlert = document.querySelector('.my-alert');
-
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            btnLoading.classList.remove('d-none');
-            btnKirim.classList.add('d-none');
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then((response) => {
-                    btnLoading.classList.add('d-none');
-                    btnKirim.classList.remove('d-none');
-                    myAlert.classList.remove('d-none');
-                    form.reset();
-                })
-                .catch((error) => console.error('Error!', error.message));
-        });
-    </script>
-</body>
-
-</html>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="foto/proj2.png" alt="Project 2"
+             
