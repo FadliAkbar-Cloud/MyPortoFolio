@@ -939,73 +939,50 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Cursor glow
-    const glow = document.getElementById('cursorGlow');
-    document.addEventListener('mousemove', e => {
-      glow.style.left = e.clientX + 'px';
-      glow.style.top = e.clientY + 'px';
-    });
-
     // Contact form
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec";
-    const form = document.forms["Contact-From-My-Porto-Folio"];
-    const btnKirim = document.querySelector(".btn-kirim");
-    const btnLoading = document.querySelector(".btn-loading");
-    const myAlert = document.querySelector(".my-alert");
+const scriptURL = "https://script.google.com/macros/s/AKfycbzVyDuyE5VAu9rVhqAwqBxTMwV0yubSBf3lZ3nzhGcsGktWNVF109_GU8rT_o-Jq1Ym/exec";
 
+const form = document.forms["Contact-From-My-Porto-Folio"];
+const btnKirim = document.querySelector(".btn-kirim");
+const btnLoading = document.querySelector(".btn-loading");
+const myAlert = document.querySelector(".my-alert");
 
-    form.addEventListener("submit", (e) => {
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      // loading
-      btnLoading.classList.toggle('d-none');
-      btnKirim.classList.toggle('d-none');
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
-        .then((response) => {
-          // reload
-        .then(() => {
-          btnLoading.classList.toggle('d-none');
-          btnKirim.classList.toggle('d-none');
-          myAlert.classList.toggle('d-none');
-          form.reset();
+  // Tampilkan loading
+  btnKirim.classList.add("d-none");
+  btnLoading.classList.remove("d-none");
 
-          console.log("Success!", response);
-        })
-        .catch((error) => console.error("Error!", error.message));
-        .catch(err => console.error(err));
+  fetch(scriptURL, {
+    method: "POST",
+    body: new FormData(form)
+  })
+    .then((response) => {
+      console.log("Response:", response);
+
+      // Sembunyikan loading
+      btnLoading.classList.add("d-none");
+      btnKirim.classList.remove("d-none");
+
+      // Tampilkan pesan berhasil
+      myAlert.classList.remove("d-none");
+
+      // Kosongkan form
+      form.reset();
+
+      console.log("Pesan berhasil dikirim!");
+    })
+    .catch((error) => {
+      console.error("Error!", error);
+
+      // Kembalikan tombol
+      btnLoading.classList.add("d-none");
+      btnKirim.classList.remove("d-none");
+
+      alert("Gagal mengirim pesan. Silakan coba lagi.");
     });
-
-    // Scroll reveal (simple intersection observer)
-    const revealEls = document.querySelectorAll('.project-card, .hobby-card, .edu-item');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.opacity = '1';
-          e.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    revealEls.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(20px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-
-    // Active nav link
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      document.querySelectorAll('.nav-link').forEach(a => {
-        a.style.color = '';
-        if (a.getAttribute('href') === '#' + current) a.style.color = 'var(--accent)';
-      });
-    });
+});
   </script>
 </body>
 </html>
